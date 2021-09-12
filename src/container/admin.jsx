@@ -5,6 +5,7 @@ import {Route, Switch} from "react-router-dom";
 import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Division from "./division";
 import DivisionAdd from "./division-add";
+import DivisionEdit from "./division-edit";
 
 function mapStateToProps(state) {
     return {};
@@ -43,6 +44,7 @@ class Admin extends Component {
                         <Route exact path="/" component={Dashboard}/>
                         <Route exact path="/division" component={Division}/>
                         <Route path="/division/add" component={DivisionAdd}/>
+                        <Route path="/division/:id" component={DivisionEdit}/>
                     </Switch>
                 </Container>
             </div>

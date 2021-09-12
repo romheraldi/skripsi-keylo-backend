@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Alert, Button, Form} from "react-bootstrap";
-import {addDivision} from "../redux/actions/division.action";
+import {editDivision, getDivision} from "../redux/actions/division.action";
 import {Redirect} from "react-router-dom";
 
 function mapStateToProps(state) {
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     };
 }
 
-class DivisionAdd extends Component {
+class DivisionEdit extends Component {
     constructor(props) {
         super(props);
 
@@ -18,6 +18,16 @@ class DivisionAdd extends Component {
             validated: false,
             name: ""
         }
+    }
+
+    componentDidMount() {
+        this.props.getDivision(this.props.match.params.id);
+    }
+
+    UNSAFE_componentWillReceiveProps(np) {
+        this.setState({
+            name: np.division.division.name,
+        });
     }
 
     handleSubmit = (event) => {
@@ -29,7 +39,7 @@ class DivisionAdd extends Component {
         }
 
         this.setState({validated: true},() => {
-            this.props.addDivision(this.state);
+            this.props.editDivision(this.props.match.params.id, this.state);
         });
     }
 
@@ -59,5 +69,5 @@ class DivisionAdd extends Component {
 }
 
 export default connect(
-    mapStateToProps, {addDivision}
-)(DivisionAdd);
+    mapStateToProps, {getDivision, editDivision}
+)(DivisionEdit);

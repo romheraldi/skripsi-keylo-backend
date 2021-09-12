@@ -53,7 +53,7 @@ export const addDivision = (division) => (dispatch) => {
                 type: SUCCESS_DIVISION,
                 payload: res.data,
                 message: {
-                    message: res.data.message,
+                    message: "Sukses memasukan data baru",
                 },
             });
         })
@@ -71,29 +71,7 @@ export const editDivision = (id, division, callback) => (dispatch) => {
                 type: SUCCESS_DIVISION,
                 payload: res.data,
                 message: {
-                    message: res.data.message,
-                },
-            });
-
-            if (callback) {
-                return callback(res.data);
-            }
-        })
-        .catch((err) => {
-            return console.log(err.message);
-        });
-};
-
-export const changePassword = (id, division, callback) => (dispatch) => {
-    return axios()
-        .put(`/division/${id}/password`, division)
-        .then((res) => {
-            // console.log(room);
-            dispatch({
-                type: SUCCESS_DIVISION,
-                payload: res.data,
-                message: {
-                    message: res.data.message,
+                    message: "Sukses mengubah data",
                 },
             });
 
@@ -110,12 +88,11 @@ export const deleteDivision = (id) => (dispatch) => {
     return axios()
         .delete(`/division/${id}`)
         .then((res) => {
-            const { status, message } = res.data;
             dispatch({
                 type: DELETE_DIVISION,
                 payload: id,
                 message: {
-                    message: res.data.message,
+                    message: "Sukses menghapus data",
                 },
             });
         })
