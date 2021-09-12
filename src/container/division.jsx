@@ -1,29 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Alert, Button, ButtonGroup, Col, Container, Row, Table} from "react-bootstrap";
+import {loadDivisions} from "../redux/actions/division.action";
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        division: state.division
+    };
 }
 
 class Division extends Component {
+    componentDidMount() {
+        this.props.loadDivisions();
+    }
+
     render() {
         return (
             <div>
                 <Container>
-                    <Alert variant={'success'}>
-                        Berhasil memasukan data
-                    </Alert>
-                    <Alert variant={'success'}>
-                        Data berhasil dihapus
-                    </Alert>
                     <Row>
                         <Col>
                             <h4>Division Data</h4>
                         </Col>
                         <Col className={'d-flex justify-content-end'}>
                             <ButtonGroup aria-label="Action Buttons">
-                                <Button variant="success">Add new data</Button>
+                                <Button href={'/division/add'} variant="success">Add new data</Button>
                                 <Button variant="warning">Export Data</Button>
                             </ButtonGroup>
                         </Col>
@@ -34,30 +35,29 @@ class Division extends Component {
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>Division Name</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Maryana</td>
-                                    <td>Lucas</td>
-                                    <td>@facebook</td>
-                                </tr>
+                                {
+                                    this.props.division.divisions.length <= 0 ?
+                                        <tr>
+                                            <td colSpan={4} className={'text-center'}>Tidak ada data</td>
+                                        </tr> :
+                                    this.props.division.divisions.map((division, i) =>
+                                        <tr key={i}>
+                                            <td>{i+1}</td>
+                                            <td>{division.name}</td>
+                                            <td>
+                                                <ButtonGroup size="sm">
+                                                    <Button>Edit Data</Button>
+                                                    <Button>Delete Data</Button>
+                                                </ButtonGroup>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
                                 </tbody>
                             </Table>
                         </Col>
@@ -69,5 +69,5 @@ class Division extends Component {
 }
 
 export default connect(
-    mapStateToProps,
+    mapStateToProps, {loadDivisions}
 )(Division);

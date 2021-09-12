@@ -4,6 +4,7 @@ import Dashboard from "./dashboard";
 import {Route, Switch} from "react-router-dom";
 import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Division from "./division";
+import DivisionAdd from "./division-add";
 
 function mapStateToProps(state) {
     return {};
@@ -22,13 +23,13 @@ class Admin extends Component {
                             <Nav className="me-auto text-center">
                                 <Nav.Link href="#home">Dashboard</Nav.Link>
                                 <NavDropdown title="Employee" id="employee-navbar">
-                                    <NavDropdown.Item href="division">Division</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Position</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Employee List</NavDropdown.Item>
+                                    <NavDropdown.Item href="/division">Division</NavDropdown.Item>
+                                    <NavDropdown.Item href="/position">Position</NavDropdown.Item>
+                                    <NavDropdown.Item href="/employee">Employee List</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown title="Devices" id="employee-navbar">
-                                    <NavDropdown.Item href="#action/3.1">Category</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Doorlock</NavDropdown.Item>
+                                    <NavDropdown.Item href="/category">Category</NavDropdown.Item>
+                                    <NavDropdown.Item href="/doorlock">Doorlock</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                             <Nav className={"mr-auto"}>
@@ -40,7 +41,8 @@ class Admin extends Component {
                 <Container className={"pt-5"}>
                     <Switch>
                         <Route exact path="/" component={Dashboard}/>
-                        <Route path="/division" component={Division}/>
+                        <Route exact path="/division" component={Division}/>
+                        <Route path="/division/add" component={DivisionAdd}/>
                     </Switch>
                 </Container>
             </div>
