@@ -6,6 +6,9 @@ import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Division from "./division";
 import DivisionAdd from "./division-add";
 import DivisionEdit from "./division-edit";
+import Position from "./position";
+import PositionAdd from "./position-add";
+import PositionEdit from "./position-edit";
 
 function mapStateToProps(state) {
     return {};
@@ -22,7 +25,7 @@ class Admin extends Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto text-center">
-                                <Nav.Link href="#home">Dashboard</Nav.Link>
+                                <Nav.Link href="/">Dashboard</Nav.Link>
                                 <NavDropdown title="Employee" id="employee-navbar">
                                     <NavDropdown.Item href="/division">Division</NavDropdown.Item>
                                     <NavDropdown.Item href="/position">Position</NavDropdown.Item>
@@ -45,6 +48,9 @@ class Admin extends Component {
                         <Route exact path="/division" component={Division}/>
                         <Route path="/division/add" component={DivisionAdd}/>
                         <Route path="/division/:id" component={DivisionEdit}/>
+                        <Route exact path="/position" component={Position}/>
+                        <Route path="/position/add" component={PositionAdd}/>
+                        <Route path="/position/:id" component={PositionEdit}/>
                     </Switch>
                 </Container>
             </div>

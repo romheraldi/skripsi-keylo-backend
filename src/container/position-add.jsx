@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, Form} from "react-bootstrap";
-import {editDivision, getDivision} from "../redux/actions/division.action";
+import {addPosition} from "../redux/actions/position.action";
 import {Redirect} from "react-router-dom";
 
 function mapStateToProps(state) {
     return {
-        division: state.division
+        position: state.position
     };
 }
 
-class DivisionEdit extends Component {
+class PositionAdd extends Component {
     constructor(props) {
         super(props);
 
@@ -18,16 +18,6 @@ class DivisionEdit extends Component {
             validated: false,
             name: ""
         }
-    }
-
-    componentDidMount() {
-        this.props.getDivision(this.props.match.params.id);
-    }
-
-    UNSAFE_componentWillReceiveProps(np) {
-        this.setState({
-            name: np.division.division.name,
-        });
     }
 
     handleSubmit = (event) => {
@@ -39,7 +29,7 @@ class DivisionEdit extends Component {
         }
 
         this.setState({validated: true},() => {
-            this.props.editDivision(this.props.match.params.id, this.state);
+            this.props.addPosition(this.state);
         });
     }
 
@@ -51,13 +41,13 @@ class DivisionEdit extends Component {
         });
     }
     render() {
-        if (this.props.division?.success) return <Redirect to="/division" />;
+        if (this.props.position?.success) return <Redirect to="/position" />;
         return (
             <div>
                 <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
                     <Form.Group className="mb-3">
-                        <Form.Label>Division name</Form.Label>
-                        <Form.Control name={"name"} required type="text" value={this.state.name} placeholder="Enter division name" onChange={this.handleInput} />
+                        <Form.Label>Position name</Form.Label>
+                        <Form.Control name={"name"} required type="text" value={this.state.name} placeholder="Enter position name" onChange={this.handleInput} />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
@@ -69,5 +59,5 @@ class DivisionEdit extends Component {
 }
 
 export default connect(
-    mapStateToProps, {getDivision, editDivision}
-)(DivisionEdit);
+    mapStateToProps, {addPosition}
+)(PositionAdd);

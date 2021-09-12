@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Alert, Button, Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import {addDivision} from "../redux/actions/division.action";
 import {Redirect} from "react-router-dom";
 

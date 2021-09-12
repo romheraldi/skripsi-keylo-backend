@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";

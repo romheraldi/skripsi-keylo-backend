@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Col, Row, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 
 function mapStateToProps(state) {
     return {};
