@@ -28,26 +28,28 @@ class PositionAdd extends Component {
             event.stopPropagation();
         }
 
-        this.setState({validated: true},() => {
+        this.setState({validated: true}, () => {
             this.props.addPosition(this.state);
         });
     }
 
     handleInput = (event) => {
-        const { value, name } = event.target;
+        const {value, name} = event.target;
 
         this.setState({
             [name]: value,
         });
     }
+
     render() {
-        if (this.props.position?.success) return <Redirect to="/position" />;
+        if (this.props.position?.success) return <Redirect to="/position"/>;
         return (
             <div>
                 <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Position name</Form.Label>
-                        <Form.Control name={"name"} required type="text" value={this.state.name} placeholder="Enter position name" onChange={this.handleInput} />
+                        <Form.Control name={"name"} required type="text" value={this.state.name}
+                                      placeholder="Enter position name" onChange={this.handleInput}/>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit

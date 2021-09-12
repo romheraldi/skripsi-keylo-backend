@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, Form} from "react-bootstrap";
-import {editPosition, getPosition} from "../redux/actions/position.action";
+import {addCategory} from "../redux/actions/category.action";
 import {Redirect} from "react-router-dom";
 
 function mapStateToProps(state) {
     return {
-        position: state.position
+        category: state.category
     };
 }
 
-class PositionEdit extends Component {
+class CategoryAdd extends Component {
     constructor(props) {
         super(props);
 
@@ -18,16 +18,6 @@ class PositionEdit extends Component {
             validated: false,
             name: ""
         }
-    }
-
-    componentDidMount() {
-        this.props.getPosition(this.props.match.params.id);
-    }
-
-    UNSAFE_componentWillReceiveProps(np) {
-        this.setState({
-            name: np.position.position.name,
-        });
     }
 
     handleSubmit = (event) => {
@@ -39,7 +29,7 @@ class PositionEdit extends Component {
         }
 
         this.setState({validated: true}, () => {
-            this.props.editPosition(this.props.match.params.id, this.state);
+            this.props.addCategory(this.state);
         });
     }
 
@@ -52,14 +42,14 @@ class PositionEdit extends Component {
     }
 
     render() {
-        if (this.props.position?.success) return <Redirect to="/position"/>;
+        if (this.props.category?.success) return <Redirect to="/category"/>;
         return (
             <div>
                 <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
                     <Form.Group className="mb-3">
-                        <Form.Label>Position name</Form.Label>
+                        <Form.Label>Category name</Form.Label>
                         <Form.Control name={"name"} required type="text" value={this.state.name}
-                                      placeholder="Enter position name" onChange={this.handleInput}/>
+                                      placeholder="Enter category name" onChange={this.handleInput}/>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
@@ -71,5 +61,5 @@ class PositionEdit extends Component {
 }
 
 export default connect(
-    mapStateToProps, {getPosition, editPosition}
-)(PositionEdit);
+    mapStateToProps, {addCategory}
+)(CategoryAdd);

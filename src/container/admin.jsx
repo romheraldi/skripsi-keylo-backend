@@ -9,6 +9,15 @@ import DivisionEdit from "./division-edit";
 import Position from "./position";
 import PositionAdd from "./position-add";
 import PositionEdit from "./position-edit";
+import EmployeeAdd from "./employee-add";
+import EmployeeEdit from "./employee-edit";
+import Employee from "./employee";
+import CategoryEdit from "./category-edit";
+import Category from "./category";
+import CategoryAdd from "./category-add";
+import DoorlockEdit from "./doorlock-edit";
+import Doorlock from "./doorlock";
+import DoorlockAdd from "./doorlock-add";
 
 function mapStateToProps(state) {
     return {};
@@ -22,7 +31,7 @@ class Admin extends Component {
                     <Container>
                         <Navbar.Brand href="#home" style={{fontWeight: "bold"}}><span
                             style={{color: "#31C4A0"}}>Key</span>lo</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto text-center">
                                 <Nav.Link href="/">Dashboard</Nav.Link>
@@ -37,7 +46,9 @@ class Admin extends Component {
                                 </NavDropdown>
                             </Nav>
                             <Nav className={"mr-auto"}>
-                                <Nav.Link href="#link"><Button variant={"light"} style={{width: '100%'}}>Keluar</Button></Nav.Link>
+                                <Nav.Link href="#link" className={'align-self-center'}>Hai, Aldi!</Nav.Link>
+                                <Nav.Link href="#link" className={"flex-1"}><Button size={"sm"} variant={"light"}
+                                                                                    style={{width: '100%'}}>Keluar</Button></Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -51,6 +62,15 @@ class Admin extends Component {
                         <Route exact path="/position" component={Position}/>
                         <Route path="/position/add" component={PositionAdd}/>
                         <Route path="/position/:id" component={PositionEdit}/>
+                        <Route exact path="/employee" component={Employee}/>
+                        <Route path="/employee/add" component={EmployeeAdd}/>
+                        <Route path="/employee/:id" component={EmployeeEdit}/>
+                        <Route exact path="/category" component={Category}/>
+                        <Route path="/category/add" component={CategoryAdd}/>
+                        <Route path="/category/:id" component={CategoryEdit}/>
+                        <Route exact path="/doorlock" component={Doorlock}/>
+                        <Route path="/doorlock/add" component={DoorlockAdd}/>
+                        <Route path="/doorlock/:id" component={DoorlockEdit}/>
                     </Switch>
                 </Container>
             </div>

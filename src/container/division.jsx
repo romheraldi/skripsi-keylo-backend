@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Alert, Button, ButtonGroup, Col, Container, Row, Table} from "react-bootstrap";
-import {loadDivisions, deleteDivision} from "../redux/actions/division.action";
+import {deleteDivision, loadDivisions} from "../redux/actions/division.action";
 
 function mapStateToProps(state) {
     return {
@@ -58,18 +58,21 @@ class Division extends Component {
                                         <tr>
                                             <td colSpan={4} className={'text-center'}>Tidak ada data</td>
                                         </tr> :
-                                    this.props.division.divisions.map((division, i) =>
-                                        <tr key={i}>
-                                            <td>{i+1}</td>
-                                            <td>{division.name}</td>
-                                            <td>
-                                                <ButtonGroup size="sm">
-                                                    <Button variant={"info"} href={`/division/${division._id}`}>Edit Data</Button>
-                                                    <Button variant={"danger"} onClick={this.handleDelete.bind(this, division._id)}>Delete Data</Button>
-                                                </ButtonGroup>
-                                            </td>
-                                        </tr>
-                                    )
+                                        this.props.division.divisions.map((division, i) =>
+                                            <tr key={i}>
+                                                <td>{i + 1}</td>
+                                                <td>{division.name}</td>
+                                                <td>
+                                                    <ButtonGroup size="sm">
+                                                        <Button variant={"info"} href={`/division/${division._id}`}>Edit
+                                                            Data</Button>
+                                                        <Button variant={"danger"}
+                                                                onClick={this.handleDelete.bind(this, division._id)}>Delete
+                                                            Data</Button>
+                                                    </ButtonGroup>
+                                                </td>
+                                            </tr>
+                                        )
                                 }
                                 </tbody>
                             </Table>
